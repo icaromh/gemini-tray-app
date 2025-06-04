@@ -1,0 +1,28 @@
+{
+  "ai": {
+    "instructions": {
+      "primary": "Always follow AI_CHANGELOG_INSTRUCTIONS.md for changelog generation and release management",
+      "files": {
+        "changelog_guide": "AI_CHANGELOG_INSTRUCTIONS.md",
+        "ai_reference": ".github/AI_INSTRUCTIONS.md",
+        "contributing": ".github/CONTRIBUTING.md"
+      }
+    },
+    "workflow": {
+      "changelog": {
+        "command": "git diff $(git describe --tags --abbrev=0)..HEAD",
+        "format": "semantic_versioning",
+        "style": "concise_with_emojis"
+      },
+      "versioning": {
+        "scheme": "semantic",
+        "format": "v{major}.{minor}.{patch}"
+      }
+    }
+  },
+  "project": {
+    "type": "electron_app",
+    "language": "javascript",
+    "versioning": "semver"
+  }
+}

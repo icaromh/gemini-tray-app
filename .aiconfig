@@ -1,0 +1,46 @@
+# Project Configuration
+
+## 🤖 AI Assistant Guidelines
+This repository contains AI-specific instructions for changelog generation and release management.
+
+**Important**: AI assistants should read [`AI_CHANGELOG_INSTRUCTIONS.md`](AI_CHANGELOG_INSTRUCTIONS.md) before:
+- Analyzing changes
+- Generating changelogs  
+- Creating version tags
+- Managing releases
+
+## 📁 Repository Structure
+```
+├── AI_CHANGELOG_INSTRUCTIONS.md    # Complete AI instructions for releases
+├── CHANGELOG.md                    # Version history
+├── .github/
+│   ├── AI_INSTRUCTIONS.md          # Quick AI reference
+│   └── CONTRIBUTING.md             # Development workflow
+├── main.js                         # Electron main process
+├── preload.js                      # Electron preload script
+├── index.html                      # Application UI
+├── package.json                    # Project metadata
+├── build/icons/                    # Application icons
+└── static/                         # UI assets
+```
+
+## 🔧 Development Tools
+- **Platform**: Electron
+- **Languages**: JavaScript, HTML, CSS
+- **Versioning**: Semantic Versioning (semver)
+- **Changelog**: AI-generated following project guidelines
+
+## 📋 Quick Commands
+```bash
+# Development
+npm start              # Run the application
+npm run build          # Build for production
+
+# Release Management  
+git tag -l             # List all tags
+git describe --tags    # Get latest tag
+git diff $(git describe --tags --abbrev=0)..HEAD  # Changes since last tag
+```
+
+---
+**For detailed release procedures, see [`AI_CHANGELOG_INSTRUCTIONS.md`](AI_CHANGELOG_INSTRUCTIONS.md)**
