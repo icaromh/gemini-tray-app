@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini Quick Chat (Webview)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="font-sans antialiased text-gray-100">
+    <div class="main-container">
+      <div class="buttons">
+        <button class="app-button selected" data-app="gemini">
+          <img src="../../assets/icons/ui/gemini.png" alt="Gemini" />
+        </button>
+        <button class="app-button" data-app="notebooklm">
+          <img src="../../assets/icons/ui/notebooklm.svg" alt="NotebookLM" />
+        </button>
+      </div>
+      <webview
+        id="geminiWebview"
+        src="https://gemini.google.com/app"
+        class="w-full h-full"
+        partition="persist:gemini"
+        allowpopups
+      ></webview>
+    </div>
+
+    <script src="renderer.js"></script>
+  </body>
+</html>
