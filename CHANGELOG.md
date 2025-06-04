@@ -1,5 +1,36 @@
 # Changelog
 
+## #next
+
+### 🧪 Comprehensive Testing Infrastructure
+
+- **Jest Testing Framework**: Multi-project configuration with separate environments
+  - Main process testing with comprehensive Electron API mocks
+  - Renderer process testing with JSDOM environment
+  - Integration testing for full app workflow validation
+  - Coverage reporting and watch mode capabilities
+- **Extensive Mocking System**: Complete Electron API mock suite
+  - BrowserWindow, Tray, Menu, and IPC communication mocks
+  - Event simulation and state management for realistic testing
+  - Comprehensive test utilities and helper functions
+- **Test Suite Structure**: Complete testing coverage setup
+  - Unit tests for window management, tray functionality, and IPC handlers
+  - Renderer process UI component testing
+  - Integration tests for complete application workflows
+  - E2E test structure using Spectron for end-to-end validation
+- **Performance Testing**: Infrastructure for monitoring app performance
+  - Startup time monitoring and memory usage tracking
+  - CPU performance metrics and responsiveness testing
+  - Automated performance regression detection
+- **Testing Documentation**: Comprehensive guides and best practices
+  - Setup instructions for different testing scenarios
+  - Manual testing checklist for UI/UX and system integration
+  - Platform-specific testing guidelines and workflows
+- **Development Tooling**: Enhanced development experience
+  - Test scripts for different testing types (`test`, `test:watch`, `test:coverage`)
+  - ESLint Jest environment support for proper code validation
+  - Automated test running with pre-commit hooks integration
+
 ## 1.5.0
 
 ### 🛠️ Development Health & Quality
