@@ -1,6 +1,6 @@
 {
   "name": "gemini-quick-chat",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "An Electron app for quick Gemini chats via keyboard shortcut using webview.",
   "main": "src/main/main.js",
   "scripts": {

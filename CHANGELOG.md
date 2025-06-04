@@ -1,5 +1,35 @@
 # Changelog
 
+## 1.4.0
+
+### 🏗️ Repository Restructuring
+- **Modular Architecture**: Completely restructured codebase into organized modules
+  - `src/main/`: Main process modules (window.js, tray.js, ipc-handlers.js, app-state.js)
+  - `src/renderer/`: Renderer process files (HTML, CSS, JS separated)
+  - `src/preload/`: Security preload scripts
+  - `src/shared/`: Shared utilities and constants
+- **Asset Organization**: Moved all assets to structured `assets/` directory
+  - `assets/icons/app/`: Application icons for builds
+  - `assets/icons/ui/`: UI element icons
+- **Documentation**: Added comprehensive development documentation
+  - `docs/DEVELOPMENT.md`: Development guide and project structure
+  - `docs/ARCHITECTURE.md`: Detailed architecture documentation
+- **Development Tools**: Enhanced development workflow
+  - `scripts/dev.sh`: Development utility script with multiple commands
+  - Updated build configuration for new structure
+
+### 🔧 Technical Improvements
+- **Separated Concerns**: Extracted CSS and JavaScript from HTML into dedicated files
+- **Eliminated Circular Dependencies**: Refactored module imports for better maintainability
+- **Improved Error Handling**: Fixed import issues and improved module communication
+- **Build Optimization**: Updated electron-builder configuration for new file structure
+- **Path Management**: Centralized all asset and file paths in shared constants
+
+### 📚 Documentation
+- **Development Guide**: Complete setup and workflow documentation
+- **Architecture Overview**: Detailed system design and data flow diagrams
+- **Code Organization**: Clear module responsibilities and interaction patterns
+
 ## 1.3.0
 
 ### ✨ New Features
