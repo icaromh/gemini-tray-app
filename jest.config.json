@@ -1,0 +1,40 @@
+{
+  "projects": [
+    {
+      "displayName": "Main Process",
+      "testEnvironment": "node",
+      "testMatch": ["<rootDir>/test/main/**/*.test.js"],
+      "setupFiles": ["<rootDir>/test/setup-main.js"],
+      "collectCoverageFrom": [
+        "src/main/**/*.js",
+        "src/shared/**/*.js",
+        "!src/main/main.js"
+      ]
+    },
+    {
+      "displayName": "Renderer Process",
+      "testEnvironment": "jsdom",
+      "testMatch": ["<rootDir>/test/renderer/**/*.test.js"],
+      "setupFiles": ["<rootDir>/test/setup-renderer.js"],
+      "collectCoverageFrom": ["src/renderer/**/*.js", "src/renderer/**/*.html"]
+    },
+    {
+      "displayName": "Integration",
+      "testEnvironment": "node",
+      "testMatch": ["<rootDir>/test/integration/**/*.test.js"],
+      "setupFiles": ["<rootDir>/test/setup-integration.js"],
+      "collectCoverageFrom": [
+        "src/**/*.js",
+        "!src/**/*.spec.js",
+        "!src/**/*.test.js"
+      ]
+    }
+  ],
+  "collectCoverage": true,
+  "coverageDirectory": "coverage",
+  "coverageReporters": ["text", "lcov", "html"],
+  "testTimeout": 10000,
+  "clearMocks": true,
+  "resetMocks": true,
+  "restoreMocks": true
+}
