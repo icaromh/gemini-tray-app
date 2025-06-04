@@ -168,10 +168,6 @@ app.on("ready", () => {
     tray = new Tray(icon);
     tray.setToolTip("Gemini Quick Chat");
     updateTrayMenu(); // Initial tray menu setup
-
-    tray.on("click", () => {
-      toggleWindowVisibility();
-    });
   }
 
   if (process.platform === "darwin") {
@@ -192,6 +188,36 @@ app.on("ready", () => {
     if (mainWindow) {
       mainWindow.hide();
     }
+  });
+
+  // NEW: Handle webview src change from renderer
+  ipcMain.on("change-webview-src", (event, app) => {
+    console.log(`[IPC] Received request to change to app: ${app}`);
+
+    // Map app identifier to URL
+    let newUrl;
+    switch (app) {
+      case "gemini":
+        newUrl = LLM_URLS.GEMINI;
+        break;
+      case "notebooklm":
+        newUrl = LLM_URLS.NOTEBOOK_LLM;
+        break;
+      default:
+        console.error(`[IPC] Unknown app identifier: ${app}`);
+        return;
+    }
+
+    // Update currentLLM
+    currentLLM = newUrl;
+
+    // Send the URL to the renderer
+    if (mainWindow) {
+      mainWindow.webContents.send("change-webview-src", currentLLM);
+    }
+
+    // Update tray menu to reflect current LLM
+    updateTrayMenu();
   });
 });
 

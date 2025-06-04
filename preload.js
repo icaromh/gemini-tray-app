@@ -18,4 +18,10 @@ contextBridge.exposeInMainWorld("electronAPI", {
    */
   onChangeWebviewSrc: (callback) =>
     ipcRenderer.on("change-webview-src", callback),
+
+  /**
+   * Sends a message to the main process to change the webview's src.
+   * @param {string} app - The app identifier (gemini or notebooklm).
+   */
+  changeWebviewSrc: (app) => ipcRenderer.send("change-webview-src", app),
 });

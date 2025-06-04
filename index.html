@@ -17,7 +17,7 @@
       /* Styling for the main container to fill the window */
       .main-container {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         height: 100%;
         background-color: rgba(
           31,
@@ -35,11 +35,93 @@
         flex-grow: 1; /* Allow webview to take available space */
         border-radius: 10px; /* Apply rounded corners to the webview */
         overflow: hidden; /* Ensure content within webview respects border-radius */
+        width: 100%;
+        height: 100%;
+      }
+
+      .buttons {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        width: 10px;
+        height: 100%;
+        background-color: rgba(17, 24, 39, 0.8);
+        transition: all 0.3s ease;
+        overflow: hidden;
+        padding: 12px 0;
+      }
+
+      .buttons:hover {
+        width: 80px;
+        padding: 12px;
+        background-color: rgba(17, 24, 39, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+        border-radius: 0 12px 12px 0;
+      }
+
+      .app-button {
+        position: relative;
+        background-color: rgba(55, 65, 81, 0.6);
+        border: 2px solid rgba(75, 85, 99, 0.5);
+        cursor: pointer;
+        padding: 12px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(8px);
+      }
+
+      .app-button:hover {
+        background-color: rgba(79, 70, 229, 0.3);
+        border-color: rgba(99, 102, 241, 0.7);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(99, 102, 241, 0.2);
+      }
+
+      .app-button.selected {
+        background-color: rgba(99, 102, 241, 0.4);
+        border-color: rgba(99, 102, 241, 0.8);
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+      }
+
+      .app-button.selected:hover {
+        background-color: rgba(99, 102, 241, 0.5);
+        transform: translateY(-1px);
+      }
+
+      .app-button img {
+        width: 32px;
+        height: 32px;
+        transition: all 0.3s ease;
+        filter: brightness(0.9);
+      }
+
+      .app-button:hover img {
+        transform: scale(1.1);
+        filter: brightness(1.1);
+      }
+
+      .app-button.selected img {
+        filter: brightness(1.2);
       }
     </style>
   </head>
   <body class="font-sans antialiased text-gray-100">
     <div class="main-container">
+      <div class="buttons">
+        <button class="app-button selected" data-app="gemini">
+          <img src="./static/gemini.png" alt="Gemini" />
+        </button>
+        <button class="app-button" data-app="notebooklm">
+          <img src="./static/notebooklm.svg" alt="NotebookLM" />
+        </button>
+      </div>
       <webview
         id="geminiWebview"
         src="https://gemini.google.com/app"
@@ -50,6 +132,23 @@
     </div>
 
     <script>
+      (() => {
+        const buttons = document.querySelectorAll("button[data-app]");
+        buttons.forEach((button) => {
+          button.addEventListener("click", (event) => {
+            const app = event.currentTarget.getAttribute("data-app");
+            console.log(`[Button Click] App selected: ${app}`);
+
+            // Update selected state
+            buttons.forEach((btn) => btn.classList.remove("selected"));
+            event.currentTarget.classList.add("selected");
+
+            // Send message to main process to change webview src
+            window.electronAPI.changeWebviewSrc(app);
+          });
+        });
+      })();
+
       const geminiWebview = document.getElementById("geminiWebview");
 
       /**
@@ -65,75 +164,33 @@
         }
       }
 
-      /**
-       * Injects JavaScript into the webview to scroll the chat history to the bottom.
-       * This function needs to be called after the content has loaded/rendered.
-       */
-      function scrollGeminiChatToBottom() {
-        if (!geminiWebview) {
-          console.warn("[Scroll] webview element not found.");
-          return;
-        }
-
-        const scriptToInject = `
-                (function() {
-                    const chatContainer = document.querySelector('div[role="main"] div[tabindex="0"][aria-label]');
-                    if (chatContainer) {
-                        chatContainer.scrollTop = chatContainer.scrollHeight;
-                        console.log('Scrolled Gemini chat to bottom.');
-                    } else {
-                        console.warn('Gemini chat container not found for scrolling.');
-                    }
-                })();
-            `;
-
-        geminiWebview
-          .executeJavaScript(scriptToInject)
-          .then(() => console.log("[Scroll] Scroll script injected."))
-          .catch((error) =>
-            console.error(
-              "[Scroll ERROR] Failed to inject scroll script:",
-              error
-            )
-          );
-      }
-
-      // Listen for the 'focus-webview-input' message from the main process
-      window.electronAPI.onFocusWebviewInput(() => {
-        geminiWebview
-          .executeJavaScript(
-            `
-                (function() {
-                    const input = document.querySelector('textarea[aria-label="Chat input"]');
-                    if (input) {
-                        input.focus();
-                        input.click();
-                    } else {
-                        console.warn('Gemini chat input not found in webview.');
-                    }
-                })();
-            `
-          )
-          .catch((error) => {
-            console.error("Error executing script in webview:", error);
-          });
-      });
-
       // NEW: Listen for 'change-webview-src' message from the main process
       window.electronAPI.onChangeWebviewSrc((event, newSrc) => {
         console.log(
           `[Webview SRC Change] Changing webview source to: ${newSrc}`
         );
         geminiWebview.src = newSrc;
+
+        // Update button selection based on the new source
+        const buttons = document.querySelectorAll("button[data-app]");
+        buttons.forEach((btn) => btn.classList.remove("selected"));
+
+        if (newSrc.includes("gemini.google.com")) {
+          document
+            .querySelector('button[data-app="gemini"]')
+            .classList.add("selected");
+        } else if (newSrc.includes("notebooklm.google.com")) {
+          document
+            .querySelector('button[data-app="notebooklm"]')
+            .classList.add("selected");
+        }
+
         // After changing src, you might want to re-focus or re-scroll after it loads
         geminiWebview.addEventListener("did-finish-load", function handler() {
           console.log(
             `[Webview SRC Change] New source finished loading: ${newSrc}`
           );
-          // Attempt to focus input or scroll to bottom after load
-          if (newSrc.startsWith("https://gemini.google.com/app")) {
-            setTimeout(scrollGeminiChatToBottom, 1000); // Give it time to render
-          }
+
           // Remove the listener to prevent multiple calls
           geminiWebview.removeEventListener("did-finish-load", handler);
         });
@@ -149,31 +206,9 @@
         );
       });
 
-      // Optional: Handle webview's 'dom-ready' event
-      geminiWebview.addEventListener("dom-ready", () => {
-        console.log("Gemini webview DOM is ready.");
-        // Initial scroll attempt after DOM is ready, only if it's Gemini
-        if (geminiWebview.src.startsWith("https://gemini.google.com/app")) {
-          setTimeout(scrollGeminiChatToBottom, 1000);
-        }
-      });
-
       // Listen for 'did-navigate-in-page' event (for SPA internal navigation)
       geminiWebview.addEventListener("did-navigate-in-page", (event) => {
         onGeminiPageChange(event.url);
-      });
-
-      // Also listen for full 'did-navigate' events
-      geminiWebview.addEventListener("did-navigate", (event) => {
-        console.log(`[Webview Navigation] Full navigation to: ${event.url}`);
-        onGeminiPageChange(event.url);
-      });
-
-      // Event listener for Escape key to hide the window
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          window.electronAPI.closeWindow();
-        }
       });
 
       // Focus the webview when the window loads
