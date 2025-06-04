@@ -23,15 +23,6 @@
 
 const geminiWebview = document.getElementById('geminiWebview');
 
-/**
- * Function to be triggered when the webview's page changes (in-page navigation).
- * @param {string} newUrl - The new URL after the navigation.
- */
-function onGeminiPageChange(newUrl) {
-  console.log(`[Webview Navigation] Page changed to: ${newUrl}`);
-  // Note: Auto-scrolling functionality removed for better user control
-}
-
 // Listen for 'change-webview-src' message from the main process
 window.electronAPI.onChangeWebviewSrc((event, newSrc) => {
   console.log(`[Webview SRC Change] Changing webview source to: ${newSrc}`);
@@ -50,14 +41,6 @@ window.electronAPI.onChangeWebviewSrc((event, newSrc) => {
       .querySelector('button[data-app="notebooklm"]')
       .classList.add('selected');
   }
-
-  // After changing src, you might want to re-focus or re-scroll after it loads
-  geminiWebview.addEventListener('did-finish-load', function handler() {
-    console.log(`[Webview SRC Change] New source finished loading: ${newSrc}`);
-
-    // Remove the listener to prevent multiple calls
-    geminiWebview.removeEventListener('did-finish-load', handler);
-  });
 });
 
 // Handle webview's 'did-fail-load' event
@@ -68,11 +51,6 @@ geminiWebview.addEventListener('did-fail-load', event => {
     event.errorDescription,
     event.validatedURL
   );
-});
-
-// Listen for 'did-navigate-in-page' event (for SPA internal navigation)
-geminiWebview.addEventListener('did-navigate-in-page', event => {
-  onGeminiPageChange(event.url);
 });
 
 // Focus the webview when the window loads

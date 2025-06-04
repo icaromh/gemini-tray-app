@@ -32,15 +32,15 @@ function handleWebviewSrcChange(event, app) {
   // Map app identifier to URL
   let newUrl;
   switch (app) {
-    case 'gemini':
-      newUrl = LLM_URLS.GEMINI;
-      break;
-    case 'notebooklm':
-      newUrl = LLM_URLS.NOTEBOOK_LLM;
-      break;
-    default:
-      console.error(`[IPC] Unknown app identifier: ${app}`);
-      return;
+  case 'gemini':
+    newUrl = LLM_URLS.GEMINI;
+    break;
+  case 'notebooklm':
+    newUrl = LLM_URLS.NOTEBOOK_LLM;
+    break;
+  default:
+    console.error(`[IPC] Unknown app identifier: ${app}`);
+    return;
   }
 
   // Update current LLM state

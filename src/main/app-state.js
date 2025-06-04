@@ -27,25 +27,6 @@ function toggleLLM() {
   updateTrayMenu();
 }
 
-/**
- * Gets the current LLM URL
- * @returns {string} The current LLM URL
- */
-function getCurrentLLM() {
-  return currentLLM;
-}
-
-/**
- * Sets the current LLM URL
- * @param {string} newLLM - The new LLM URL
- */
-function setCurrentLLMState(newLLM) {
-  currentLLM = newLLM;
-  setCurrentLLM(newLLM);
-}
-
 module.exports = {
   toggleLLM,
-  getCurrentLLM,
-  setCurrentLLMState,
 };

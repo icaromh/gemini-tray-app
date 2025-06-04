@@ -65,22 +65,22 @@ clean() {
     print_success "Cleaned build artifacts"
 }
 
-# Run tests (placeholder for future test implementation)
+# Run tests
 test() {
-    print_warning "Tests not yet implemented"
-    # npm test
+    print_status "Running tests..."
+    npm test
 }
 
-# Lint code (placeholder for future linting setup)
+# Lint code
 lint() {
-    print_warning "Linting not yet configured"
-    # npm run lint
+    print_status "Running linter..."
+    npm run lint
 }
 
-# Format code (placeholder for future formatting setup)
+# Format code
 format() {
-    print_warning "Code formatting not yet configured"
-    # npm run format
+    print_status "Formatting code..."
+    npm run format
 }
 
 # Show project structure
@@ -100,9 +100,9 @@ help() {
     echo "  dev         Start development server"
     echo "  build       Build application for distribution"
     echo "  clean       Clean build artifacts"
-    echo "  test        Run tests (not implemented)"
-    echo "  lint        Lint code (not implemented)"
-    echo "  format      Format code (not implemented)"
+    echo "  test        Run tests"
+    echo "  lint        Lint code"
+    echo "  format      Format code"
     echo "  structure   Show project structure"
     echo "  help        Show this help message"
     echo ""

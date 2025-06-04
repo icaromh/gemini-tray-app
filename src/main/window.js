@@ -72,8 +72,6 @@ function toggleWindowVisibility() {
     centerWindow();
     mainWindow.show();
     mainWindow.focus();
-    // Send a message to the renderer to focus the input field within the webview
-    mainWindow.webContents.send('focus-webview-input');
   }
 }
 

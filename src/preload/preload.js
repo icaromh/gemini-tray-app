@@ -7,12 +7,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
    */
   closeWindow: () => ipcRenderer.send('close-window'),
   /**
-   * Listens for a message from the main process to focus the webview input.
-   * @param {function} callback - The function to call when the message is received.
-   */
-  onFocusWebviewInput: callback =>
-    ipcRenderer.on('focus-webview-input', callback),
-  /**
    * Listens for a message from the main process to change the webview's src.
    * @param {function} callback - The function to call with the new URL.
    */
