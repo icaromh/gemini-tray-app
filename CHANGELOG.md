@@ -1,5 +1,41 @@
 # Changelog
 
+## 1.5.0
+
+### 🛠️ Development Health & Quality
+
+- **Pre-commit Hooks**: Added Husky with automatic code formatting and linting
+- **Code Quality Tools**: Integrated ESLint and Prettier with pre-commit validation
+- **Commit Message Validation**: Enforced conventional commit format standards
+- **Development Scripts**: Enhanced `scripts/dev.sh` with working implementations
+
+### 🔧 Code Optimization
+
+- **Dead Code Cleanup**: Removed ~50+ lines of unused functions and empty event handlers
+- **Placeholder Functions**: Replaced non-functional placeholders with working npm script implementations
+- **API Cleanup**: Removed unused IPC communication channels and state management functions
+- **Code Standards**: Fixed ESLint violations and improved code consistency
+
+### 📚 Documentation & User Experience
+
+- **Comprehensive README**: Complete project documentation with installation and usage guides
+- **Visual Documentation**: Added application screenshot to showcase the interface
+- **Architecture Guide**: Detailed technical documentation for developers
+- **Contributing Guidelines**: Clear workflow for development and contributions
+
+### 🎨 CSS Architecture Modernization
+
+- **Tailwind CSS Migration**: Refactored custom CSS to utility-first Tailwind classes
+- **Code Reduction**: Reduced CSS from 120+ lines to 19 lines of essential styles
+- **Maintainability**: Improved styling consistency and future development speed
+- **Visual Preservation**: Maintained all glass-morphism effects and animations
+
+### 🔧 Technical Improvements
+
+- **Modular Styling**: Better separation of concerns between layout and component styles
+- **Performance**: Reduced CSS bundle size and improved load times
+- **Development Workflow**: Enhanced development experience with automated quality checks
+
 ## 1.4.0
 
 ### 🏗️ Repository Restructuring
