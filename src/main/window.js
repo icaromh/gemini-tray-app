@@ -3,9 +3,9 @@
  * Handles creation and management of the main application window
  */
 
-const { BrowserWindow, screen } = require("electron");
-const path = require("path");
-const { WINDOW_CONFIG, ASSETS } = require("../shared/constants");
+const { BrowserWindow, screen } = require('electron');
+const path = require('path');
+const { WINDOW_CONFIG, ASSETS } = require('../shared/constants');
 
 let mainWindow = null;
 
@@ -27,7 +27,7 @@ function createWindow() {
   // Load the renderer HTML
   mainWindow.loadFile(path.join(__dirname, ASSETS.RENDERER_HTML));
 
-  mainWindow.once("ready-to-show", () => {
+  mainWindow.once('ready-to-show', () => {
     // Window will be shown by the shortcut, not immediately
   });
 
@@ -42,8 +42,8 @@ function createWindow() {
 function setupWindowEventHandlers() {
   if (!mainWindow) return;
 
-  mainWindow.on("close", (event) => {
-    const { app } = require("electron");
+  mainWindow.on('close', event => {
+    const { app } = require('electron');
     if (app.quitting) {
       mainWindow = null;
     } else {
@@ -52,7 +52,7 @@ function setupWindowEventHandlers() {
     }
   });
 
-  mainWindow.on("blur", () => {
+  mainWindow.on('blur', () => {
     if (!mainWindow.webContents.isDevToolsOpened()) {
       mainWindow.hide();
     }
@@ -73,7 +73,7 @@ function toggleWindowVisibility() {
     mainWindow.show();
     mainWindow.focus();
     // Send a message to the renderer to focus the input field within the webview
-    mainWindow.webContents.send("focus-webview-input");
+    mainWindow.webContents.send('focus-webview-input');
   }
 }
 

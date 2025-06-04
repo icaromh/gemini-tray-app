@@ -143,6 +143,7 @@ Are there breaking changes?
 ## Creating Semantic Version Tags
 
 ### 📋 Pre-Tagging Checklist
+
 1. **Ensure all changes are committed**
 2. **Generate and review changelog** using the instructions above
 3. **Update version in package.json** (if applicable)
@@ -175,6 +176,7 @@ git push --tags
 **Format**: `v[MAJOR].[MINOR].[PATCH]`
 
 **Examples**:
+
 - `v1.0.0` - Initial major release
 - `v1.1.0` - New features added
 - `v1.1.1` - Bug fixes
@@ -185,11 +187,13 @@ git push --tags
 **Structure**: `v[VERSION] - [Brief Description]`
 
 **Good Examples**:
+
 - `v1.3.0 - Interactive app switcher with modern UI`
 - `v1.2.1 - Fix memory leak in webview component`
 - `v2.0.0 - Complete rewrite with new architecture`
 
 **Bad Examples**:
+
 - `v1.3.0 - Updates` ❌ (too vague)
 - `Version 1.3.0` ❌ (inconsistent format)
 - `v1.3.0 - Fixed some bugs and added features` ❌ (too generic)
@@ -266,12 +270,12 @@ git tag -l "v*.*.*"  # Show all semantic version tags
 
 ### 📊 Version Bump Examples
 
-| Current | Change Type | Next Version | Example |
-|---------|-------------|--------------|---------|
-| `v1.2.3` | Bug fix | `v1.2.4` | Fixed crash on startup |
-| `v1.2.3` | New feature | `v1.3.0` | Added dark mode |
-| `v1.2.3` | Breaking change | `v2.0.0` | Removed deprecated API |
-| `v1.2.3` | Security fix | `v1.2.4` | Patched XSS vulnerability |
-| `v1.2.3` | Major rewrite | `v2.0.0` | Complete UI overhaul |
+| Current  | Change Type     | Next Version | Example                   |
+| -------- | --------------- | ------------ | ------------------------- |
+| `v1.2.3` | Bug fix         | `v1.2.4`     | Fixed crash on startup    |
+| `v1.2.3` | New feature     | `v1.3.0`     | Added dark mode           |
+| `v1.2.3` | Breaking change | `v2.0.0`     | Removed deprecated API    |
+| `v1.2.3` | Security fix    | `v1.2.4`     | Patched XSS vulnerability |
+| `v1.2.3` | Major rewrite   | `v2.0.0`     | Complete UI overhaul      |
 
 ---

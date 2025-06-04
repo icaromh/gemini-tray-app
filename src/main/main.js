@@ -3,12 +3,16 @@
  * Entry point for the Electron application
  */
 
-const { app, globalShortcut } = require("electron");
-const { SHORTCUTS } = require("../shared/constants");
-const { createWindow, toggleWindowVisibility, getMainWindow } = require("./window");
-const { createTray, destroyTray } = require("./tray");
-const { setupIpcHandlers } = require("./ipc-handlers");
-const { toggleLLM } = require("./app-state");
+const { app, globalShortcut } = require('electron');
+const { SHORTCUTS } = require('../shared/constants');
+const {
+  createWindow,
+  toggleWindowVisibility,
+  getMainWindow,
+} = require('./window');
+const { createTray, destroyTray } = require('./tray');
+const { setupIpcHandlers } = require('./ipc-handlers');
+const { toggleLLM } = require('./app-state');
 
 /**
  * Configures the application to start at system login for macOS.
@@ -22,7 +26,7 @@ function setupAutoLaunch() {
 }
 
 // Event listener for when the Electron app is ready
-app.on("ready", () => {
+app.on('ready', () => {
   createWindow();
   setupAutoLaunch();
   setupIpcHandlers();
@@ -31,7 +35,7 @@ app.on("ready", () => {
   createTray(toggleLLM);
 
   // Hide dock on macOS
-  if (process.platform === "darwin") {
+  if (process.platform === 'darwin') {
     app.dock.hide();
   }
 
@@ -41,22 +45,24 @@ app.on("ready", () => {
   });
 
   if (!registered) {
-    console.error(`Failed to register global shortcut: ${SHORTCUTS.TOGGLE_WINDOW}`);
+    console.error(
+      `Failed to register global shortcut: ${SHORTCUTS.TOGGLE_WINDOW}`
+    );
   }
 });
 
-app.on("window-all-closed", () => {
+app.on('window-all-closed', () => {
   // Do nothing here to keep the app running in the tray
 });
 
-app.on("activate", () => {
+app.on('activate', () => {
   const mainWindow = getMainWindow();
   if (mainWindow) {
     toggleWindowVisibility();
   }
 });
 
-app.on("will-quit", () => {
+app.on('will-quit', () => {
   globalShortcut.unregisterAll();
   destroyTray();
 });

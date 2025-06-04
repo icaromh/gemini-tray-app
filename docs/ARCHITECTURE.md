@@ -47,6 +47,7 @@ Gemini Quick Chat is an Electron application that provides quick access to AI ch
 ### Main Process Modules
 
 #### 1. main.js (Entry Point)
+
 - **Purpose**: Application initialization and coordination
 - **Responsibilities**:
   - Set up Electron app lifecycle events
@@ -55,6 +56,7 @@ Gemini Quick Chat is an Electron application that provides quick access to AI ch
   - Configure auto-launch
 
 #### 2. window.js (Window Management)
+
 - **Purpose**: Browser window creation and management
 - **Responsibilities**:
   - Create and configure main window
@@ -63,6 +65,7 @@ Gemini Quick Chat is an Electron application that provides quick access to AI ch
   - Send messages to renderer process
 
 #### 3. tray.js (System Tray)
+
 - **Purpose**: System tray icon and menu management
 - **Responsibilities**:
   - Create system tray icon
@@ -71,6 +74,7 @@ Gemini Quick Chat is an Electron application that provides quick access to AI ch
   - Update menu based on app state
 
 #### 4. ipc-handlers.js (IPC Communication)
+
 - **Purpose**: Inter-process communication handling
 - **Responsibilities**:
   - Set up IPC event listeners
@@ -79,6 +83,7 @@ Gemini Quick Chat is an Electron application that provides quick access to AI ch
   - Validate and process IPC data
 
 #### 5. app-state.js (State Management)
+
 - **Purpose**: Global application state
 - **Responsibilities**:
   - Manage current LLM selection
@@ -89,6 +94,7 @@ Gemini Quick Chat is an Electron application that provides quick access to AI ch
 ### Renderer Process
 
 #### 1. index.html (UI Structure)
+
 - **Purpose**: Application user interface
 - **Features**:
   - Webview container for AI chat interfaces
@@ -96,6 +102,7 @@ Gemini Quick Chat is an Electron application that provides quick access to AI ch
   - Clean, minimal design
 
 #### 2. styles.css (Styling)
+
 - **Purpose**: Visual design and animations
 - **Features**:
   - Glass-morphism effects
@@ -104,6 +111,7 @@ Gemini Quick Chat is an Electron application that provides quick access to AI ch
   - Modern UI design patterns
 
 #### 3. renderer.js (UI Logic)
+
 - **Purpose**: User interaction handling
 - **Responsibilities**:
   - Button click handling
@@ -114,6 +122,7 @@ Gemini Quick Chat is an Electron application that provides quick access to AI ch
 ### Shared Modules
 
 #### 1. constants.js (Configuration)
+
 - **Purpose**: Application-wide constants
 - **Contains**:
   - LLM URLs
@@ -124,6 +133,7 @@ Gemini Quick Chat is an Electron application that provides quick access to AI ch
 ### Preload Script
 
 #### 1. preload.js (Security Bridge)
+
 - **Purpose**: Secure communication bridge
 - **Responsibilities**:
   - Expose safe APIs to renderer

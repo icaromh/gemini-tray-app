@@ -4,8 +4,8 @@
 
 // Application URLs
 const LLM_URLS = {
-  GEMINI: "https://gemini.google.com/app",
-  NOTEBOOK_LLM: "https://notebooklm.google.com/",
+  GEMINI: 'https://gemini.google.com/app',
+  NOTEBOOK_LLM: 'https://notebooklm.google.com/',
 };
 
 // Window configuration
@@ -21,14 +21,14 @@ const WINDOW_CONFIG = {
 
 // Keyboard shortcuts
 const SHORTCUTS = {
-  TOGGLE_WINDOW: process.platform === "darwin" ? "Option+Space" : "Alt+Space",
+  TOGGLE_WINDOW: process.platform === 'darwin' ? 'Option+Space' : 'Alt+Space',
 };
 
 // Asset paths
 const ASSETS = {
-  TRAY_ICON: "trayIcon.png",
-  PRELOAD_SCRIPT: "../preload/preload.js",
-  RENDERER_HTML: "../renderer/index.html",
+  TRAY_ICON: 'trayIcon.png',
+  PRELOAD_SCRIPT: '../preload/preload.js',
+  RENDERER_HTML: '../renderer/index.html',
 };
 
 module.exports = {

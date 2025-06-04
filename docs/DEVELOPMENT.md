@@ -32,20 +32,24 @@ gemini-app/
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js (v16 or higher)
 - npm or yarn
 
 ### Installation
+
 ```bash
 npm install
 ```
 
 ### Development
+
 ```bash
 npm start
 ```
 
 ### Building
+
 ```bash
 npm run build
 ```
@@ -53,6 +57,7 @@ npm run build
 ## Architecture
 
 ### Main Process (`src/main/`)
+
 - **main.js**: Application entry point and coordination
 - **window.js**: Browser window creation and management
 - **tray.js**: System tray icon and menu management
@@ -60,30 +65,36 @@ npm run build
 - **app-state.js**: Global application state management
 
 ### Renderer Process (`src/renderer/`)
+
 - **index.html**: Main application UI
 - **styles.css**: CSS styles with glass-morphism effects
 - **renderer.js**: UI interaction and webview management
 
 ### Preload (`src/preload/`)
+
 - **preload.js**: Secure bridge between main and renderer processes
 
 ### Shared (`src/shared/`)
+
 - **constants.js**: Application-wide constants and configuration
 
 ## Key Features
 
 ### UI Components
+
 - Slide-out sidebar with app switcher buttons
 - Glass-morphism effects with blur and transparency
 - Hover animations and state management
 - Responsive button interactions
 
 ### IPC Communication
+
 - Bidirectional communication between main and renderer
 - App switching via button clicks
 - Window management via shortcuts
 
 ### System Integration
+
 - Global keyboard shortcut (Option+Space on macOS, Alt+Space on Windows/Linux)
 - System tray with context menu
 - Auto-launch configuration
@@ -99,12 +110,15 @@ npm run build
 ## Debugging
 
 ### Main Process
+
 Console logs appear in the terminal where you ran `npm start`.
 
 ### Renderer Process
+
 Open Developer Tools in the Electron window to see renderer logs.
 
 ### IPC Communication
+
 Both processes log IPC messages for debugging communication flow.
 
 ## Contributing

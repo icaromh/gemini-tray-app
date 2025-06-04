@@ -5,7 +5,14 @@
   "main": "src/main/main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "dev": "electron . --dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint src/ --ext .js",
+    "lint:fix": "eslint src/ --ext .js --fix",
+    "prepare": "husky install",
+    "pre-commit": "lint-staged"
   },
   "keywords": [
     "Electron",
@@ -19,7 +26,11 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^29.0.0",
-    "electron-builder": "^24.9.1"
+    "electron-builder": "^24.9.1",
+    "prettier": "^3.0.0",
+    "eslint": "^8.45.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3"
   },
   "build": {
     "appId": "com.yourcompany.geminiquickchat",
@@ -39,5 +50,13 @@
       "icon": "assets/icons/app/image.icns",
       "target": "dmg"
     }
+  },
+  "lint-staged": {
+    "*.{js,json,md,html,css}": [
+      "prettier --write"
+    ],
+    "*.js": [
+      "eslint --fix"
+    ]
   }
 }

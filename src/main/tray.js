@@ -3,11 +3,11 @@
  * Handles system tray creation and menu management
  */
 
-const { Tray, Menu, nativeImage, app } = require("electron");
-const path = require("path");
-const fs = require("fs");
-const { ASSETS, LLM_URLS } = require("../shared/constants");
-const { toggleWindowVisibility, hideWindow } = require("./window");
+const { Tray, Menu, nativeImage, app } = require('electron');
+const path = require('path');
+const fs = require('fs');
+const { ASSETS, LLM_URLS } = require('../shared/constants');
+const { toggleWindowVisibility, hideWindow } = require('./window');
 
 let tray = null;
 let currentLLM = LLM_URLS.GEMINI;
@@ -20,22 +20,28 @@ let toggleLLMCallback = null;
  */
 function createTray(toggleLLMFn) {
   toggleLLMCallback = toggleLLMFn;
-  const trayIconPath = path.join(__dirname, "../../assets/icons/app", ASSETS.TRAY_ICON);
+  const trayIconPath = path.join(
+    __dirname,
+    '../../assets/icons/app',
+    ASSETS.TRAY_ICON
+  );
 
   if (!fs.existsSync(trayIconPath)) {
-    console.error(`[Tray Icon ERROR] Tray icon file not found at: ${trayIconPath}`);
+    console.error(
+      `[Tray Icon ERROR] Tray icon file not found at: ${trayIconPath}`
+    );
     return null;
   }
 
-  let icon = nativeImage.createFromPath(trayIconPath);
+  const icon = nativeImage.createFromPath(trayIconPath);
 
   // On macOS, use template image for better system integration
-  if (process.platform === "darwin") {
+  if (process.platform === 'darwin') {
     icon.setTemplateImage(true);
   }
 
   tray = new Tray(icon);
-  tray.setToolTip("Gemini Quick Chat");
+  tray.setToolTip('Gemini Quick Chat');
   updateTrayMenu();
 
   return tray;
@@ -48,26 +54,28 @@ function updateTrayMenu() {
   if (!tray) return;
 
   const contextMenu = Menu.buildFromTemplate([
-    { 
-      label: "Show Window", 
-      click: () => toggleWindowVisibility() 
-    },
-    { 
-      label: "Hide Window", 
-      click: () => hideWindow() 
-    },
-    { type: "separator" },
     {
-      label: `Switch to ${currentLLM === LLM_URLS.GEMINI ? "Notebook LLM" : "Gemini"}`,
+      label: 'Show Window',
+      click: () => toggleWindowVisibility(),
+    },
+    {
+      label: 'Hide Window',
+      click: () => hideWindow(),
+    },
+    { type: 'separator' },
+    {
+      label: `Switch to ${
+        currentLLM === LLM_URLS.GEMINI ? 'Notebook LLM' : 'Gemini'
+      }`,
       click: () => {
         if (toggleLLMCallback) {
           toggleLLMCallback();
         }
       },
     },
-    { type: "separator" },
+    { type: 'separator' },
     {
-      label: "Quit",
+      label: 'Quit',
       click: () => {
         app.quitting = true;
         app.quit();
