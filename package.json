@@ -34,7 +34,8 @@
       "index.html",
       "package.json",
       "node_modules/**/*",
-      "build/icons/*"
+      "build/icons/*",
+      "static/*"
     ],
     "mac": {
       "category": "public.app-category.utilities",
