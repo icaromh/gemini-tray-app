@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.7.0
+
+### ✨ New Features
+
+- **Default Language Setting**: Set default Electron language to pt-BR for localized user experience
+
+### 🔧 Technical Improvements
+
+- **AI Instructions Update**: Enhanced guidelines for changelog generation and release process
+
 ## 1.6.0
 
 ### 🧪 Comprehensive Testing Infrastructure
