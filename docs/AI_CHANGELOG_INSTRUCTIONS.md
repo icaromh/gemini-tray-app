@@ -8,16 +8,16 @@ Generate concise, semantic-versioned changelogs by analyzing git diffs between t
 
 ```bash
 # Get the latest git tag
-git describe --tags --abbrev=0
+git describe --tags --abbrev=0 | cat
 
 # Get diff between latest tag and current work
-git diff $(git describe --tags --abbrev=0)..HEAD
+git diff $(git describe --tags --abbrev=0)..HEAD | cat
 
 # Alternative: Get diff for unstaged changes
-git diff
+git diff | cat
 
 # Get list of changed files
-git status --porcelain
+git status --porcelain | cat
 ```
 
 ## Version Numbering (Semantic Versioning)
@@ -154,7 +154,7 @@ Are there breaking changes?
 
 ```bash
 # 1. Get current latest tag (to determine next version)
-git describe --tags --abbrev=0
+git describe --tags --abbrev=0 | cat
 
 # 2. Create annotated tag with changelog message
 git tag -a v[VERSION] -m "[VERSION] - Brief release description"
@@ -202,11 +202,11 @@ git push --tags
 
 ```bash
 # Step 1: Prepare release
-git status  # Ensure working directory is clean
+git status | cat  # Ensure working directory is clean
 git pull    # Get latest changes
 
 # Step 2: Determine version bump
-git diff $(git describe --tags --abbrev=0)..HEAD  # Review changes
+git diff $(git describe --tags --abbrev=0)..HEAD | cat  # Review changes
 
 # Step 3: Update files (if needed)
 # - Update package.json version
@@ -219,21 +219,21 @@ git tag -a v$NEXT_VERSION -m "v$NEXT_VERSION - Brief description"
 git push origin v$NEXT_VERSION
 
 # Step 5: Verify tag creation
-git tag -l  # List all tags
-git show v$NEXT_VERSION  # Show tag details
+git tag -l | cat  # List all tags
+git show v$NEXT_VERSION | cat  # Show tag details
 ```
 
 ### 🛠️ Tag Management Commands
 
 ```bash
 # List all tags
-git tag -l
+git tag -l | cat
 
 # List tags with messages
-git tag -l -n1
+git tag -l -n1 | cat
 
 # Show specific tag details
-git show v1.3.0
+git show v1.3.0 | cat
 
 # Delete local tag (if mistake)
 git tag -d v1.3.0

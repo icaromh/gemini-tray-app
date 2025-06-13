@@ -12,13 +12,13 @@ When working on this repository, **ALWAYS** reference and follow the comprehensi
 
 ```bash
 # Get latest tag
-git describe --tags --abbrev=0
+git describe --tags --abbrev=0 | cat
 
 # Get diff for changelog analysis
-git diff $(git describe --tags --abbrev=0)..HEAD
+git diff $(git describe --tags --abbrev=0)..HEAD | cat
 
 # Check current status
-git status --porcelain
+git status --porcelain | cat
 ```
 
 ## Key Files to Update During Releases

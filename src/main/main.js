@@ -14,6 +14,8 @@ const { createTray, destroyTray } = require('./tray');
 const { setupIpcHandlers } = require('./ipc-handlers');
 const { toggleLLM } = require('./app-state');
 
+app.commandLine.appendSwitch('lang', 'pt-BR');
+
 /**
  * Configures the application to start at system login for macOS.
  * This function uses Electron's app.setLoginItemSettings() to manage auto-launch.
