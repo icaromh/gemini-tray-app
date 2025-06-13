@@ -1,6 +1,6 @@
 # Changelog
 
-## #next
+## 1.6.0
 
 ### 🧪 Comprehensive Testing Infrastructure
 
@@ -30,6 +30,15 @@
   - Test scripts for different testing types (`test`, `test:watch`, `test:coverage`)
   - ESLint Jest environment support for proper code validation
   - Automated test running with pre-commit hooks integration
+
+### ⬆️ Dependency Updates
+
+- **Electron**: Updated from v29.0.0 to v36.4.0 - Latest stable release with performance improvements and security updates
+- **Electron Builder**: Updated from v24.9.1 to v26.0.12 - Enhanced build capabilities and bug fixes
+- **Prettier**: Updated from v3.0.0 to v3.5.3 - Latest formatting improvements and language support
+- **ESLint**: Updated from v8.45.0 to v8.57.1 - Latest linting rules and JavaScript support
+- **Lint-staged**: Updated from v13.2.3 to v13.3.0 - Improved pre-commit hook performance
+- **Testing Dependencies**: Added Jest v29.7.0, Playwright v1.53.0, and Spectron v15.0.0
 
 ## 1.5.0
 

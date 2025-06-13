@@ -1,6 +1,6 @@
 {
   "name": "gemini-quick-chat",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "An Electron app for quick Gemini chats via keyboard shortcut using webview.",
   "main": "src/main/main.js",
   "scripts": {
@@ -31,15 +31,15 @@
   "author": "Ícaro Heimig",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^29.0.0",
-    "electron-builder": "^24.9.1",
-    "prettier": "^3.0.0",
-    "eslint": "^8.45.0",
+    "@playwright/test": "^1.53.0",
+    "electron": "^36.4.0",
+    "electron-builder": "^26.0.12",
+    "eslint": "^8.57.1",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.3",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "@playwright/test": "^1.40.0",
+    "lint-staged": "^13.3.0",
+    "prettier": "^3.5.3",
     "spectron": "^15.0.0"
   },
   "build": {
@@ -67,6 +67,14 @@
     ],
     "*.js": [
       "eslint --fix"
+    ]
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron"
     ]
   }
 }

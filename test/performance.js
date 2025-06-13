@@ -24,32 +24,34 @@ class PerformanceTester {
 
   async testStartupTime() {
     console.log('⏱️  Testing startup time...');
-    
+
     const startTime = Date.now();
-    
+
     // Start the app
     this.appProcess = spawn('npm', ['start'], {
       cwd: process.cwd(),
-      stdio: 'pipe'
+      stdio: 'pipe',
     });
 
     // Wait for app to be ready (look for specific log message)
-    return new Promise((resolve) => {
-      this.appProcess.stdout.on('data', (data) => {
+    return new Promise(resolve => {
+      this.appProcess.stdout.on('data', data => {
         const output = data.toString();
         if (output.includes('ready') || output.includes('started')) {
           const endTime = Date.now();
           const startupTime = endTime - startTime;
-          
+
           this.results.push({
             test: 'Startup Time',
             value: startupTime,
             unit: 'ms',
             status: startupTime < 3000 ? 'PASS' : 'FAIL',
-            threshold: '< 3000ms'
+            threshold: '< 3000ms',
           });
-          
-          console.log(`   Startup time: ${startupTime}ms ${startupTime < 3000 ? '✅' : '❌'}`);
+
+          console.log(
+            `   Startup time: ${startupTime}ms ${startupTime < 3000 ? '✅' : '❌'}`
+          );
           resolve();
         }
       });
@@ -61,7 +63,7 @@ class PerformanceTester {
           value: 'TIMEOUT',
           unit: 'ms',
           status: 'FAIL',
-          threshold: '< 3000ms'
+          threshold: '< 3000ms',
         });
         resolve();
       }, 10000);
@@ -70,7 +72,7 @@ class PerformanceTester {
 
   async testMemoryUsage() {
     console.log('💾 Testing memory usage...');
-    
+
     if (!this.appProcess) {
       console.log('   ⚠️  App not running, skipping memory test');
       return;
@@ -88,10 +90,12 @@ class PerformanceTester {
         value: memoryMB,
         unit: 'MB',
         status: memoryMB < 200 ? 'PASS' : 'WARN',
-        threshold: '< 200MB'
+        threshold: '< 200MB',
       });
 
-      console.log(`   Memory usage: ${memoryMB}MB ${memoryMB < 200 ? '✅' : '⚠️'}`);
+      console.log(
+        `   Memory usage: ${memoryMB}MB ${memoryMB < 200 ? '✅' : '⚠️'}`
+      );
     } catch (error) {
       console.log('   ❌ Could not measure memory usage');
     }
@@ -99,54 +103,71 @@ class PerformanceTester {
 
   async testCPUUsage() {
     console.log('🔥 Testing CPU usage...');
-    
+
     // Simple CPU monitoring (platform dependent)
     // This is a basic implementation - could be enhanced with proper monitoring
-    console.log('   📊 CPU usage monitoring would require platform-specific tools');
-    
+    console.log(
+      '   📊 CPU usage monitoring would require platform-specific tools'
+    );
+
     this.results.push({
       test: 'CPU Usage',
       value: 'N/A',
       unit: '%',
       status: 'SKIP',
-      threshold: '< 5% idle'
+      threshold: '< 5% idle',
     });
   }
 
   async testWindowTogglePerformance() {
     console.log('🔄 Testing window toggle performance...');
-    
+
     // This would require automation tools to test actual window toggling
     console.log('   📝 Window toggle performance requires manual testing');
-    
+
     this.results.push({
       test: 'Window Toggle',
       value: 'Manual',
       unit: 'ms',
       status: 'MANUAL',
-      threshold: '< 100ms'
+      threshold: '< 100ms',
     });
   }
 
   async generateReport() {
     console.log('\n📊 Performance Test Report');
-    console.log('='*50);
-    
+    console.log('=' * 50);
+
     this.results.forEach(result => {
-      const status = result.status === 'PASS' ? '✅' : 
-        result.status === 'WARN' ? '⚠️' : 
-          result.status === 'SKIP' ? '⏭️' : 
-            result.status === 'MANUAL' ? '📝' : '❌';
-      
-      console.log(`${status} ${result.test}: ${result.value}${result.unit} (${result.threshold})`);
+      const status =
+        result.status === 'PASS'
+          ? '✅'
+          : result.status === 'WARN'
+            ? '⚠️'
+            : result.status === 'SKIP'
+              ? '⏭️'
+              : result.status === 'MANUAL'
+                ? '📝'
+                : '❌';
+
+      console.log(
+        `${status} ${result.test}: ${result.value}${result.unit} (${result.threshold})`
+      );
     });
 
     // Save report to file
     const reportPath = path.join(__dirname, 'performance-report.json');
-    fs.writeFileSync(reportPath, JSON.stringify({
-      timestamp: new Date().toISOString(),
-      results: this.results
-    }, null, 2));
+    fs.writeFileSync(
+      reportPath,
+      JSON.stringify(
+        {
+          timestamp: new Date().toISOString(),
+          results: this.results,
+        },
+        null,
+        2
+      )
+    );
 
     console.log(`\n📄 Report saved to: ${reportPath}`);
   }
@@ -162,7 +183,7 @@ class PerformanceTester {
 // Run tests if called directly
 if (require.main === module) {
   const tester = new PerformanceTester();
-  
+
   // Handle cleanup on exit
   process.on('SIGINT', () => {
     console.log('\n⏹️  Stopping performance tests...');

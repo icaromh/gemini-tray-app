@@ -184,16 +184,16 @@
 
 **Environment**:
 
-- OS: ****\_\_\_\_****
-- Node Version: ****\_\_\_\_****
-- Electron Version: ****\_\_\_\_****
-- Date: ****\_\_\_\_****
+- OS: \***\*\_\_\_\_\*\***
+- Node Version: \***\*\_\_\_\_\*\***
+- Electron Version: \***\*\_\_\_\_\*\***
+- Date: \***\*\_\_\_\_\*\***
 
 **Test Results Summary**:
 
 - ✅ Passed: \_**\_/\_\_**
 - ❌ Failed: \_**\_/\_\_**
-- ⚠️ Issues Found: ****\_\_\_\_****
+- ⚠️ Issues Found: \***\*\_\_\_\_\*\***
 
 **Critical Issues**:
 
